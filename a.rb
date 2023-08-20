@@ -41,7 +41,16 @@ execute "Initialize PBM" do
  SHELL
 end
 
-run_command 'RUBY_CONFIGURE_OPTS="--with-openssl-dir=/home/mastodon/.rbenv/versions/3.0.6/openssl --target=arm-linux --host=arm-linux" rbenv install 3.0.6
+
+run_command 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
+run_command 'echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc'
+run_command 'echo 'eval "$(rbenv init -)"' >> ~/.bashrc'
+run_command 'source ~/.bashrc'
+run_command 'git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build'
+run_command 'sudo apt update'
+run_command 'sudo apt full-upgrade -y'
+run_command 'sudo apt install libyaml-dev libffi-dev -y
+run_command 'RUBY_CONFIGURE_OPTS="--with-openssl-dir=/home/pi/.rbenv/versions/3.2.2/openssl --target=arm-linux --host=arm-linux" rbenv install 3.2.2
 run_command 'sudo systemctl disable triggerhappy.socket'
 run_command 'sudo systemctl disable triggerhappy.service'
 run_command 'sudo systemctl disable bluetooth'
